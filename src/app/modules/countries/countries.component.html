@@ -1,0 +1,40 @@
+<div class="countries">
+    <div class="flex flex-row min-h-screen justify-center items-center">
+        @if (hasError()) {
+            <div class="w-full px-10">
+                <ladorian-alert-message
+                    message="We have not been able to obtain the information, we apologize for the inconvenience."
+                    severity="error"
+                />
+            </div>
+        } @else {
+            <div class="gap-4 grid grid-cols-1 w-full px-10">
+                <form [formGroup]="form()">
+                    <div class="gap-4 grid grid-cols-1 md:grid-cols-2 w-full">
+                        <ladorain-input-text
+                            [control]="form().controls.country"
+                            formControlName="country"
+                            label="search by country"
+                            placeholder="type..."
+                        />
+
+                        <ladorain-multi-select
+                            [control]="form().controls.continents"
+                            formControlName="continents"
+                            label="filter by Continents"
+                            optionLabel="name"
+                            [options]="continents()"
+                            placeholder="select..."
+                        />
+                    </div>
+                </form>
+
+                <ladorian-table
+                    [columns]="displayColumns()"
+                    [items]="countriesFiltered()"
+                    [loading]="loading()"
+                />
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div
+    class="multi-select-ladorian flex flex-col gap-2"
+    [ngClass]="{
+        'is-required': hasRequired()
+    }"
+>
+    @if (showLabel()) {
+        <label class="capitalize" [for]="multiSelectId()">
+            {{ label() }}
+        </label>
+    }
+
+    <p-multiselect
+        #multiSelect
+        appendTo="body"
+        [disabled]="disabled()"
+        [display]="display()"
+        [inputId]="multiSelectId()"
+        [loading]="loading()"
+        [maxSelectedLabels]="maxSelectedLabels()"
+        [ngClass]="{
+            'ng-invalid ng-dirty': control().errors && control().touched
+        }"
+        [ngModel]="innerValue()"
+        (onChange)="onChange($event)"
+        [optionLabel]="optionLabel()"
+        [options]="options()"
+        [placeholder]="placeholder()"
+        [selectionLimit]="selectionLimit()"
+        [size]="size()"
+    />
+
+    @if (control().errors && control().touched) {
+        <small class="invalid" [id]="multiSelectId()">
+            {{ errors()[0] }}
+        </small>
+    }
+</div>

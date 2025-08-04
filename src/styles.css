@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+.input-text-ladorian,
+.multi-select-ladorian {
+    &.is-required label::after {
+        content: " *";
+        color: var(--color-red-400);
+    }
+
+    .invalid {
+        color: var(--color-red-400);
+    }
+}

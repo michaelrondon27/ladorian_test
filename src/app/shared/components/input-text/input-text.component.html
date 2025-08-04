@@ -1,0 +1,34 @@
+<div
+    class="input-text-ladorian flex flex-col gap-2"
+    [ngClass]="{
+        'is-required': hasRequired()
+    }"
+>
+    @if (showLabel()) {
+        <label class="capitalize" [for]="inputId()">
+            {{ label() }}
+        </label>
+    }
+
+    <input
+        #input
+        [disabled]="disabled()"
+        [id]="inputId()"
+        (input)="onChange($event, true)"
+        [ngClass]="{
+            'ng-invalid ng-dirty': control().errors && control().touched
+        }"
+        pInputText
+        [placeholder]="placeholder()"
+        [pSize]="size()"
+        [readOnly]="readonly()"
+        [type]="inputType()"
+        [value]="innerValue()"
+    />
+
+    @if (control().errors && control().touched) {
+        <small class="invalid" [id]="inputId()">
+            {{ errors()[0] }}
+        </small>
+    }
+</div>
